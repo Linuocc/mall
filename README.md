@@ -1,4 +1,4 @@
-# 07-mall
+# mall
 
 ## Project setup
 ```
