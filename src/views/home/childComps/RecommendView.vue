@@ -32,10 +32,12 @@
     padding: 10px 0 20px;
     border-bottom: 10px solid #eee;
   }
-  .recommend-item{
+
+  .recommend-item {
     flex: 1;
   }
-  .recommend-item img{
+
+  .recommend-item img {
     width: 70px;
     height: 70px;
     margin-bottom: 10px;
