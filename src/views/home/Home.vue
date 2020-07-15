@@ -6,7 +6,8 @@
     </nav-bar>
 
     <!--滚动区域-->
-    <scroll class="content" ref="scroll" :probe-type="3" @scroll="contentScroll">
+    <scroll class="content" ref="scroll" :probe-type="3" @scroll="contentScroll" :pullUpLoad="true"
+            @pullingUp="loadMore">
       <!--首页轮播图-->
       <home-swiper :banners="banners"/>
       <recommend-view :recommends="recommends"/>
@@ -60,7 +61,7 @@
           'sell': {page: 0, list: []}
         },
         currentType: 'pop',
-        isShowBackTop:false
+        isShowBackTop: false
       }
     },
     computed: {
@@ -75,6 +76,12 @@
       this.getHomeGoods('pop');
       this.getHomeGoods('new');
       this.getHomeGoods('sell');
+
+      //3.监听goodsItem中发送到事件总线的事件
+      this.$bus.$on('itemImageLoad',()=>{
+        
+        this.$refs.scroll.refresh();
+      })
     },
     methods: {
       /**
@@ -117,15 +124,20 @@
       },
 
       //回到顶部
-      backClick(){
-        this.$refs.scroll.scrollTo(0,0)
+      backClick() {
+        this.$refs.scroll.scrollTo(0, 0)
       },
-      contentScroll(position){
-        if(-(position.y)>1000){
-          this.isShowBackTop = true
-        }else {
-          this.isShowBackTop = false
+      contentScroll(position) {
+        if (-(position.y) > 1000) {
+          this.isShowBackTop = true;
+        } else {
+          this.isShowBackTop = false;
         }
+      },
+      //上拉加载更多
+      loadMore() {
+        this.getHomeGoods(this.currentType);
+        this.$refs.scroll.finishPullUp();
       }
     }
   }
@@ -164,6 +176,7 @@
     left: 0;
 
   }
+
   /*.content{*/
   /*  height: calc(100vh - 93px);*/
   /*  overflow: hidden;*/
