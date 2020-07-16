@@ -11,12 +11,12 @@
 
   export default {
     name: "Scroll",
-    props:{
-      probeType:{
-        type:Number,
-        default:0
+    props: {
+      probeType: {
+        type: Number,
+        default: 0
       },
-      pullUpLoad:{
+      pullUpLoad: {
         type: Boolean,
         default: false
       }
@@ -34,11 +34,11 @@
         pullUpLoad: this.pullUpLoad
       })
 
-      this.scroll.on('scroll',(position)=>{
-        this.$emit('scroll',position);
+      this.scroll.on('scroll', (position) => {
+        this.$emit('scroll', position);
       })
 
-      this.scroll.on('pullingUp',()=>{
+      this.scroll.on('pullingUp', () => {
         this.$emit('pullingUp')
       })
 
@@ -48,15 +48,15 @@
     methods: {
       // 滚动到指定位置
       scrollTo(x, y, time = 300) {
-        this.scroll.scrollTo(x, y, time);
+        this.scroll && this.scroll.scrollTo(x, y, time);
       },
       //上拉触底完成
-      finishPullUp(){
-        this.scroll.finishPullUp();
+      finishPullUp() {
+        this.scroll && this.scroll.finishPullUp();
       },
       //重新计算高度
-      refresh(){
-        this.scroll.refresh();
+      refresh() {
+        this.scroll && this.scroll.refresh();
       }
     }
   }

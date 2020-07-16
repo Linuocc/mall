@@ -76,10 +76,10 @@
       this.getHomeGoods('pop');
       this.getHomeGoods('new');
       this.getHomeGoods('sell');
-
+    },
+    mounted() {
       //3.监听goodsItem中发送到事件总线的事件
-      this.$bus.$on('itemImageLoad',()=>{
-        
+      this.$bus.$on('itemImageLoad', () => {
         this.$refs.scroll.refresh();
       })
     },
@@ -112,13 +112,13 @@
       tabClick(index) {
         switch (index) {
           case 0:
-            this.currentType = 'pop'
+            this.currentType = 'pop';
             break;
           case 1:
-            this.currentType = 'new'
+            this.currentType = 'new';
             break;
           case 2:
-            this.currentType = 'sell'
+            this.currentType = 'sell';
             break;
         }
       },
