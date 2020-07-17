@@ -34,13 +34,20 @@
         pullUpLoad: this.pullUpLoad
       })
 
-      this.scroll.on('scroll', (position) => {
-        this.$emit('scroll', position);
-      })
+      //监听滚动
+      if (this.probeType === 2 || this.probeType === 3) {
+        this.scroll.on('scroll', (position) => {
+          this.$emit('scroll', position);
+        })
+      }
 
-      this.scroll.on('pullingUp', () => {
-        this.$emit('pullingUp')
-      })
+      // 监听触底
+      if (this.pullUpLoad) {
+        this.scroll.on('pullingUp', () => {
+          this.$emit('pullingUp')
+        })
+      }
+
 
       // 更新scroll
       this.scroll.refresh();
@@ -57,6 +64,7 @@
       //重新计算高度
       refresh() {
         this.scroll && this.scroll.refresh();
+        // console.log("refresh");
       }
     }
   }
