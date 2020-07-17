@@ -9,7 +9,7 @@
   import DetailNavBar from "./childComps/DetailNavBar";
   import DetailSwiper from "./childComps/DetailSwiper";
 
-  import {getDetail} from "network/detail";
+  import {getDetail,Goods,shop} from "network/detail";
 
   export default {
     name: "Detail",
@@ -20,7 +20,8 @@
     data() {
       return {
         iid: null,
-        topImages:[]
+        topImages:[],
+        goods:{}
       }
     },
     created() {
@@ -29,7 +30,9 @@
       //请求数据
       getDetail(this.iid).then(res => {
         console.log(res);
-        this.topImages = res.result.itemInfo.topImages
+        const data = res.result;
+        this.topImages = data.itemInfo.topImages;
+        this.goods = new Goods(data.itemInfo,)
       })
 
     }
