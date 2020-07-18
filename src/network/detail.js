@@ -24,7 +24,7 @@ export class Goods {
 }
 
 
-
+//商家信息整理
 export class shop {
   constructor(shopInfo) {
     this.logo = shopInfo.shopLogo;
